@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import com.example.listview.R
 import com.example.listview.datas.Student
-import kotlinx.android.synthetic.main.activity_main.view.*
 
 class StudentAdater(val mContext: Context, val resId: Int, val mList: List<Student>) :
     ArrayAdapter<Student>(mContext, resId, mList) {
@@ -18,7 +18,7 @@ class StudentAdater(val mContext: Context, val resId: Int, val mList: List<Stude
         //받아본 임시 row가 nall인가?
         if (tempRow == null)
 
-            tempRow = inf.inflate(R.layout.student_List_item)
+            tempRow = inf.inflate(R.layout.student_list_item, null)
 
         //tempRow에는 null일 가능성이 없다
         //진짜 row에는 절대 null에 아니게 된 tempRow를 복사
