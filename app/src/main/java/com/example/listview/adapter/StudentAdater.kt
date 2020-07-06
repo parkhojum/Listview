@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import com.example.listview.R
 import com.example.listview.datas.Student
 
@@ -27,6 +28,25 @@ class StudentAdater(val mContext: Context, val resId: Int, val mList: List<Stude
 
         val row = tempRow!!
 
+        //row의 내용을 실제에 맞게 변경
+
+        //(그려줄 위치에 맞는) 실제 데이터를 가져오고
+        val data = mList[position]
+
+        // 실제 데이터를 가져오고
+
+        //row의 컴포넌트들을 가져와서
+        val nameTxt = row.findViewById<TextView>(R .id.nameTxt)
+        val addressTxt = row.findViewById<TextView>(R .id.addressTxt)
+        val ageTxt = row.findViewById<TextView>(R .id.ageTxt)
+
+        //데이터 반영
+
+        nameTxt.text = data.name
+        addressTxt.text = data.address
+
+        ageTxt.text = "${data.birthYear}세"
+        //ListView에 이 row를 뿌려달라고 결과로 지정
         return row
     }
 
