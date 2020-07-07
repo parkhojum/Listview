@@ -1,8 +1,10 @@
 package com.example.listview
 
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.example.listview.adapter.StudentAdater
 import com.example.listview.datas.Student
 import kotlinx.android.synthetic.main.activity_main.*
@@ -53,11 +55,24 @@ class MainActivity : AppCompatActivity() {
         //학생 목록 롱클릭 이벤트 처리
         studentListView.setOnItemLongClickListener { parent, view, position, id ->
 
-            // 오래눌린 사람을 명단에서 삭제
-            mStudentList.removeAt(position)
+            //정말 그사람을 지울지 확인. => 확인ok여야 삭제
+            val deletAlert = AlertDialog.Builder(this)
+            deletAlert.setTitle("학생 목록 삭제")
+            deletAlert.setMessage("정말 이 학생을 삭제라시겠습니까?")
+            deletAlert.setPositiveButton("확인", DialogInterface.OnClickListener { dialogInterface, i ->
+                //확인을 누르면 실제로 삭제 처리
 
-            //어댑터에게 새로고침 시키기
-            mAdater.notifyDataSetChanged()
+                // 오래눌린 사람을 명단에서 삭제
+                mStudentList.removeAt(position)
+
+                //어댑터에게 새로고침 시키기
+                mAdater.notifyDataSetChanged()
+
+
+            })
+            deletAlert.setNegativeButton("취소",null)
+            deletAlert.show()
+
 
           //LongClick은 반드시 Boolean값을 리턴해 줘야함
             return@setOnItemLongClickListener true
