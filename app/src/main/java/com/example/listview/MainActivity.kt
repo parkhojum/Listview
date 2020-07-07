@@ -2,6 +2,7 @@ package com.example.listview
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.example.listview.adapter.StudentAdater
 import com.example.listview.datas.Student
 import kotlinx.android.synthetic.main.activity_main.*
@@ -29,5 +30,18 @@ class MainActivity : AppCompatActivity() {
 
         //완성된 어댑터를 리스트뷰와 연결
         studentListView.adapter = mAdater
+
+        //학생 목록 리스트뷰의 이벤트 처리
+        studentListView.setOnItemClickListener { parent, view, position, id ->
+
+            //각 줄
+
+            //
+            val clickedUser = mStudentList[position]
+
+            //
+            Toast.makeText(this, clickedUser.name, Toast.LENGTH_LONG).show()
+
+        }
     }
 }
